@@ -42,7 +42,7 @@ class DrugUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Drug
 
     # Setting fields of drug
-    fields = ['unit', 'date', 'shift_hours', 'rsi_kit_seal_number', 'expiration_date', 'incident_number', 'hospital_number', 'contact_bc_cole']
+    fields = ['unit', 'date', 'shift_hours', 'rsi_kit_seal_number', 'expiration_date', 'incident_number', 'hospital_number', 'contact_bc_cole', 'comments']
 
     # Check if form is valid
     def form_valid(self, form):
@@ -59,7 +59,7 @@ class DrugCreateView(LoginRequiredMixin, CreateView):
     model = Drug
 
     # Setting fields of drug
-    fields = ['unit', 'date', 'shift_hours', 'rsi_kit_seal_number', 'expiration_date', 'incident_number', 'hospital_number', 'contact_bc_cole']
+    fields = ['unit', 'date', 'shift_hours', 'rsi_kit_seal_number', 'expiration_date', 'incident_number', 'hospital_number', 'contact_bc_cole', 'comments']
     # Check if form is valid
     def form_valid(self, form):
         return super().form_valid(form)

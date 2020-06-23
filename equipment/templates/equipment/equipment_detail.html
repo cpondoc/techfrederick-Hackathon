@@ -30,6 +30,10 @@
               </div>
           </div>
           <br />
+          <h4>Comments</h4>
+          <hr/>
+          <p><b><i class="fas fa-comments mr-1"></i> Comments:</b> {{ object.comments }}</p>
+          <br />
           <div>
               <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'equipment-update' object.id%}"><i class="fas fa-pen-alt mr-1"></i> Update</a>
               <a class="btn btn-danger btn-sm mt-1 mb-1 ml-2" href="{% url 'equipment-delete' object.id%}"><i class="fas fa-trash-alt mr-1"></i> Delete</a>

@@ -42,7 +42,7 @@ class EquipmentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Equipment
 
     # Setting fields of post
-    fields = ['unit', 'date', 'mileage', 'fuel', 'emergency_lights', 'driving_lights', 'red_bag', 'red_bag', 'lp_fifteen', 'trans_box', 'bls_bag', 'rtf_bags', 'suction', 'oxygen_bag', 'signature']
+    fields = ['unit', 'date', 'mileage', 'fuel', 'emergency_lights', 'driving_lights', 'red_bag', 'red_bag', 'lp_fifteen', 'trans_box', 'bls_bag', 'rtf_bags', 'suction', 'oxygen_bag', 'signature', 'comments']
 
     # Check if form is valid
     def form_valid(self, form):
@@ -59,7 +59,7 @@ class EquipmentCreateView(LoginRequiredMixin, CreateView):
     model = Equipment
 
     # Setting fields of post
-    fields = ['unit', 'date', 'mileage', 'fuel', 'emergency_lights', 'driving_lights', 'red_bag', 'red_bag', 'lp_fifteen', 'trans_box', 'bls_bag', 'rtf_bags', 'suction', 'oxygen_bag', 'signature']
+    fields = ['unit', 'date', 'mileage', 'fuel', 'emergency_lights', 'driving_lights', 'red_bag', 'red_bag', 'lp_fifteen', 'trans_box', 'bls_bag', 'rtf_bags', 'suction', 'oxygen_bag', 'signature', 'comments']
 
     # Check if form is valid
     def form_valid(self, form):

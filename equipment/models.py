@@ -22,6 +22,7 @@ class Equipment(models.Model):
     suction = models.BooleanField()
     oxygen_bag = models.BooleanField(verbose_name="Oxygen Bag")
     signature = models.CharField(max_length=50, verbose_name="Provider Signature")
+    comments = models.TextField()
 
     # Redirecting after created
     def get_absolute_url(self):
