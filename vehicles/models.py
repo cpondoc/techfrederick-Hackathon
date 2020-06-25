@@ -25,7 +25,7 @@ class Vehicle(models.Model):
 
     # Redirecting after created
     def get_absolute_url(self):
-        return reverse('vehicle-detail', kwargs={'pk' : self.pk})
+        return reverse('vehicles-detail', kwargs={'pk' : self.pk})
 
     # Defining the name
     def __str__(self):

@@ -1,6 +1,7 @@
 {% extends 'equipment/base.html' %}
 {% block title %}View Narcotic{% endblock title%}
 {% load auth_extras %}
+{% load mathfilters %}
 {% block content %}
     <div class="title-container">
       <h1><i class="fas fa-search"></i> View Narcotic</h1>
@@ -17,19 +18,28 @@
               <div class="col-sm">
                 <p><b><i class="fas fa-calendar-day mr-1"></i> Date:</b> {{ narcotic.date }}</p>
                 <p><b><i class="fas fa-stopwatch mr-1"></i> Shift Hours:</b> {{ narcotic.shift_hours }}</p>
-                <p><b><i class="fas fa-pump-medical mr-1"></i> Morphine in Stock:</b> {{ narcotic.morphine_in_stock }}</p>
+                <p><b><i class="fas fa-pump-medical mr-1"></i> Morphine in Stock (mg):</b> {{ narcotic.morphine_in_stock }}</p>
                 <p><b><i class="fas fa-prescription-bottle-alt mr-1"></i> Ketamine in Stock (100mg/ml):</b> {{ narcotic.ketamine_in_stock_hundred_miligram_millileter }}</p>
                 <p><b><i class="fas fa-syringe mr-1"></i> Ketamine in Stock (10mg/ml):</b> {{ narcotic.ketamine_in_stock_ten_miligram_millileter }}</p>
-                <p><b><i class="fas fa-vial mr-1"></i> Versed in Stock:</b> {{ narcotic.versed_in_stock }}</p>
+                <p><b><i class="fas fa-vial mr-1"></i> Versed in Stock (mg):</b> {{ narcotic.versed_in_stock }}</p>
+                <p><b><i class="fas fa-tape mr-1"></i> Seal #:</b> {{ narcotic.seal_number }}</p>
               </div>
               <div class="col-sm">
-                <p><b><i class="fas fa-tape mr-1"></i> Seal #:</b> {{ narcotic.seal_number }}</p>
                 <p><b><i class="fas fa-exclamation-triangle mr-1"></i> Incident #:</b> {{ narcotic.incident_number }}</p>
                 <p><b><i class="fas fa-prescription-bottle mr-1"></i> Medication Used:</b> {{ narcotic.medication_used }}</p>
                 <p><b><i class="fas fa-file-medical mr-1"></i> Medication Amount (mg):</b> {{ narcotic.medication_amount_mg }}</p>
                 <p><b><i class="fas fa-person-booth mr-1"></i> Provider Name:</b> {{ narcotic.provider_name }}</p>
                 <p><b><i class="fas fa-signature mr-1"></i> Waste Witness Initials:</b> {{ narcotic.waste_witness_initials }}</p>
                 <p><b><i class="fas fa-file-signature mr-1"></i> Waste Amount (mg):</b> {{ narcotic.waste_amount_mg }}</p>
+                {% if narcotic.medication_used == "Morphine" %}
+                  <p><b><i class="fas fa-calculator mr-1"></i> Updated Morphine (mg):</b> {{ narcotic.morphine_in_stock|sub:narcotic.medication_amount_mg }}</p>
+                {% elif narcotic.medication_used == "Versed" %}
+                  <p><b><i class="fas fa-calculator mr-1"></i> Updated Versed (mg):</b> {{ narcotic.versed_in_stock|sub:narcotic.medication_amount_mg }}</p>
+                {% elif narcotic.medication_used == "Ketamine (10mg/ml)" %}
+                  <p><b><i class="fas fa-calculator mr-1"></i> Updated Ketamine (10mg/ml): </b>{{ narcotic.ketamine_in_stock_ten_miligram_millileter|sub:narcotic.medication_amount_mg }}</p>
+                {% elif narcotic.medication_used == "Ketamine (100mg/ml)" %}
+                  <p><b><i class="fas fa-calculator mr-1"></i> Updated Ketamine (100mg/ml): </b>{{ narcotic.ketamine_in_stock_hundred_miligram_millileter|sub:narcotic.medication_amount_mg }}</p>
+                {% endif %}
               </div>
           </div>
           <br />

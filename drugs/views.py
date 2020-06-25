@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Drug
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from .filters import DrugFilter
 
 """ Drug Views """
 
@@ -28,6 +29,12 @@ class DrugListView(LoginRequiredMixin, ListView):
 
     # Will list the drugs
     context_object_name = 'drugs'
+
+    # Creating filter object!
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = DrugFilter(self.request.GET, queryset = self.get_queryset())
+        return context
 
 # Viewing a single drug
 class DrugDetailView(LoginRequiredMixin, DetailView):

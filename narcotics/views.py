@@ -7,6 +7,7 @@ from email.mime.base import MIMEBase
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from django.contrib.auth.models import User
+from .filters import NarcoticsFilter
 
 """ Sending Email """
 
@@ -116,6 +117,12 @@ class NarcoticListView(LoginRequiredMixin, ListView):
 
     # Will list the narcotics
     context_object_name = 'narcotics'
+
+    # Creating filter object!
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = NarcoticsFilter(self.request.GET, queryset = self.get_queryset())
+        return context
 
 # Viewing a single narcotic
 class NarcoticDetailView(LoginRequiredMixin, DetailView):

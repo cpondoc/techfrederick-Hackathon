@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Vehicle
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from .filters import VehicleFilter
 
 """ Vehicle Views """
 
@@ -29,6 +30,12 @@ class VehicleListView(LoginRequiredMixin, ListView):
 
     # Will list the vehicles
     context_object_name = 'vehicles'
+
+    # Creating filter object!
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = VehicleFilter(self.request.GET, queryset = self.get_queryset())
+        return context
 
 # Viewing a single vehicle
 class VehicleDetailView(LoginRequiredMixin, DetailView):

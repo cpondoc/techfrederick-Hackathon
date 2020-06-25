@@ -1,23 +1,43 @@
 {% extends 'equipment/base.html' %}
 {% block title %}Drugs{% endblock title%}
+{% load bootstrap %}
 {% block content %}
     <div class="title-container">
         <h1><i class="fas fa-tablets mr-1"></i> Drugs <a class="btn btn-primary ml-3" style="float: right; margin-right: 10px;font-size: 18px;color: white !important; background-color: #4398d9 !important; border-color: #4398d9 !important;" href="{% url 'drugs-create' %}"><i class="fas fa-plus mr-1"></i> Add Drugs</a> </h1></h1>
         <p>Manage drug inventory.</p>
     </div>
     <br />
-    {% for drug in drugs %}
-    <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;">
-        <div class="card-header">
-          <b>{{ drug.date }}</b>
-        </div>
-        <div class="card-body">
-          <h3 class="card-title"><i class="fas fa-tablets mr-1"></i> {{ drug.unit }}</h3>
-          <p class="card-text"><b><i class="fas fa-hospital mr-1"></i> Hospital:</b> {{ drug.hospital_number }}</p>
-          <p class="card-text"><b><i class="fas fa-user-clock mr-1"></i> Provider Name:</b> {{ drug.provider_name }}</p>
-          <a style="background-color: #4398d9 !important; border-color: #4398d9 !important;" href="{% url 'drugs-detail' drug.id %}" class="btn btn-primary"><i class="fas fa-search"></i> View</a>
-        </div>
+    <div class="row">
+      <div class="col">
+        <h2><i class="fas fa-filter mr-1"></i> Filter</h2>
+        <p>Use the form to filter and query the entries.</p>
+        <form method="GET">
+          {{ filter.form | bootstrap }}
+          <button type="submit" style="background-color: #4398d9 !important; border-color: #4398d9 !important;" class="btn btn-primary">Submit</button>
+        </form>
       </div>
-      <br />
-      {% endfor %}
+      <div class="col">
+        <h2><i class="fas fa-list mr-1"></i> Drugs</h2>
+        <p>List of all drug items. Click on "View" to learn more.</p>
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col"><i class="fas fa-truck mr-1"></i> Unit</th>
+              <th scope="col"><i class="fas fa-calendar-alt mr-1"></i> Date</th>
+              <th scope="col"><i class="fas fa-user-clock mr-1"></i> Provider Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for drug in filter.qs %}
+            <tr>
+              <th scope="row"><a style="color: black !important;" href="{% url 'drugs-detail' drug.id %}">{{ drug.unit }}</a></th>
+              <td>{{ drug.date }}</td>
+              <td>{{ drug.provider_name }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <br />
 {% endblock content %}
