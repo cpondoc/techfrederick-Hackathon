@@ -23,6 +23,8 @@ class NarcoticListView(LoginRequiredMixin, ListView):
     # Setting the model to drug to list all the drugs
     model = Narcotic
 
+    print(type(Narcotic.objects.all()))
+
     # Setting the template name
     template_name = 'narcotics/narcotics.html'
 

@@ -13,5 +13,5 @@ urlpatterns = [
     path('<int:pk>/', DrugDetailView.as_view(), name="drugs-detail"),
     path('<int:pk>/update/', DrugUpdateView.as_view(), name="drugs-update"),
     path('new/', DrugCreateView.as_view(), name="drugs-create"),
-    path('<int:pk>/delete', DrugDeleteView.as_view(), name="drugs-delete")
+    path('<int:pk>/delete/', DrugDeleteView.as_view(), name="drugs-delete")
 ]

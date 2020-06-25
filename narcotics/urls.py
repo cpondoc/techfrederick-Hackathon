@@ -13,5 +13,5 @@ urlpatterns = [
     path('<int:pk>/', NarcoticDetailView.as_view(), name="narcotics-detail"),
     path('<int:pk>/update/', NarcoticUpdateView.as_view(), name="narcotics-update"),
     path('new/', NarcoticCreateView.as_view(), name="narcotics-create"),
-    path('<int:pk>/delete', NarcoticDeleteView.as_view(), name="narcotics-delete")
+    path('<int:pk>/delete/', NarcoticDeleteView.as_view(), name="narcotics-delete")
 ]

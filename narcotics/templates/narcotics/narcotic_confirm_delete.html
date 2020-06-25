@@ -1,10 +1,19 @@
 {% extends 'equipment/base.html' %}
+{% load auth_extras %}
 {% block content %}
     <div class="title-container">
         <h1><i class="fas fa-trash-alt mr-1"></i> Delete Narcotic</h1>
         <p>Delete a Narcotic.</p>
     </div>
     <br />
+    {% if request.user|has_group:"medic" %} 
+    <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;">
+        <div class="card-body">
+            <h2 class="card-title"><i class="fas fa-ban mr-1"></i> Restricted Access</h2>
+        <p>As a medic, you are not allowed to delete a narcotic. If you believe this is a mistake, please contact your supervisors or admins.</p>
+        </div>
+    </div>
+    {% else %}
     <div class="content-section" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;">
         <form method="POST">
             {% csrf_token %}
@@ -18,4 +27,5 @@
             </div>
         </form>
     </div>
+    {% endif %}
 {% endblock content %}

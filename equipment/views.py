@@ -80,4 +80,8 @@ class EquipmentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 # Home Page
 def home(request):
+
+    # Print out the user group of the user.
+    print(request.user.groups.all()[0].name)
+
     return render(request, 'equipment/home.html')

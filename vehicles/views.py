@@ -13,7 +13,7 @@ def vehicle(request):
         'title': "Vehicles",
         'vehicles': Vehicle.objects.all()
     }
-
+    
     # Return List
     return render(request, 'vehicles/vehicles.html', context)
 
