@@ -1,13 +1,35 @@
 {% extends 'equipment/base.html' %}
 {% block title %}Vehicles{% endblock title%}
 {% load bootstrap %}
-
+{% load auth_extras %}
 {% block content %}
     <div class="title-container">
         <h1><i class="fas fa-truck mr-1"></i> Vehicles <a class="btn btn-primary ml-3" style="float: right; margin-right: 10px;font-size: 18px;color: white !important; background-color: #4398d9 !important; border-color: #4398d9 !important;" href="{% url 'vehicles-create' %}"><i class="fas fa-plus mr-1"></i> Add Vehicles</a></h1>
         <p>Manage vehicle units.</p>
     </div>
     <br />
+    {% if request.user|has_group:"medic" %}
+    <h2><i class="fas fa-list mr-1"></i> Vehicles</h2>
+        <p>List of all vehicle items. Click on the name of the unit to learn more.</p>
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col"><i class="fas fa-truck mr-1"></i> Unit</th>
+              <th scope="col"><i class="fas fa-calendar-alt mr-1"></i> Date</th>
+              <th scope="col"><i class="fas fa-user-clock mr-1"></i> Provider Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for vehicle in filter.qs %}
+            <tr>
+              <th scope="row"><a style="color: black !important;" href="{% url 'vehicles-detail' vehicle.id %}">{{ vehicle.unit }}</a></th>
+              <td>{{ vehicle.date }}</td>
+              <td>{{ vehicle.provider_name }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+    {% else %}
     <div class="row">
       <div class="col">
         <h2><i class="fas fa-filter mr-1"></i> Filter</h2>
@@ -40,5 +62,6 @@
         </table>
       </div>
     </div>
+    {% endif %}
     <br />
 {% endblock content %}

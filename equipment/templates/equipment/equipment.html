@@ -8,6 +8,28 @@
       <p>Look at updates on Vehicle Equipment.</p>
     </div>
     <br />
+    {% if request.user|has_group:"medic" %}
+    <h2><i class="fas fa-list mr-1"></i> Equipment</h2>
+        <p>List of all equipment. Click on "View" to learn more.</p>
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col"><i class="fas fa-box-open"></i> Unit</th>
+              <th scope="col"><i class="fas fa-calendar-alt mr-1"></i> Date</th>
+              <th scope="col"><i class="fas fa-gas-pump mr-1"></i> Fuel</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for equip in filter.qs %}
+            <tr>
+              <th scope="row"><a style="color: black !important;" href="{% url 'equipment-detail' equip.id %}">{{ equip.unit }}</a></th>
+              <td>{{ equip.date }}</td>
+              <td>{{ equip.fuel }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+          </table>
+    {% else %}
     <div class="row">
       <div class="col">
         <h2><i class="fas fa-filter mr-1"></i> Filter</h2>
@@ -40,5 +62,6 @@
           </table>
       </div>
       </div>
+      {% endif %}
       <br />
 {% endblock content %}
