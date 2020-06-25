@@ -40,6 +40,63 @@ def email_user(receiving_email_address, supervisor, subject, drug, recorded_amou
 # Viewing all narcotics
 def narcotic(request):
 
+    # List of all users
+    users = User.objects.all()
+
+    # List of all narcotics
+    narcotics = Narcotic.objects.all()
+
+    # Checking narcotic amounts
+    for i in range(0, len(narcotics) - 1):
+
+        # Checking if morphine in stock doesn't match
+        if (narcotics[i].morphine_in_stock != narcotics[i + 1].morphine_in_stock):
+
+            # Print alert
+            print("Sending morphine email.")
+
+            # Send email alert to admin
+            for user in users:
+                if user.groups.filter(name = "admin").exists():
+                    email_user(user.email, "chris.pondoc@gmail.com", "Morphine in Stock Alert", "Morphine", narcotics[i].morphine_in_stock, narcotics[i + 1].morphine_in_stock)
+        
+        # Checking if ketamine in stock doesn't match
+        if (narcotics[i].ketamine_in_stock_hundred_miligram_millileter != narcotics[i + 1].ketamine_in_stock_hundred_miligram_millileter):
+
+            # Print alert
+            print("Sending ketamine in stock in 100 mg/ml email.")
+
+            # Send email alert to admin
+            for user in users:
+                if user.groups.filter(name = "admin").exists():
+                    email_user(user.email, "chris.pondoc@gmail.com", "Ketamine in Stock (100 mg/ml) Alert", "Ketamine in Stock (100 mg/ml)", narcotics[i].ketamine_in_stock_hundred_miligram_millileter, narcotics[i + 1].ketamine_in_stock_hundred_miligram_millileter)
+
+        # Checking if second ketamine in stock doesn't match
+        if (narcotics[i].ketamine_in_stock_ten_miligram_millileter != narcotics[i + 1].ketamine_in_stock_ten_miligram_millileter):
+
+            # Print alert
+            print("Sending ketamine in stock in 10 mg/ml email.")
+
+            # Send email alert to admin
+            for user in users:
+                if user.groups.filter(name = "admin").exists():
+                    email_user(user.email, "chris.pondoc@gmail.com", "Ketamine in Stock (10 mg/ml) Alert", "Ketamine in Stock (10 mg/ml)", narcotics[i].ketamine_in_stock_ten_miligram_millileter, narcotics[i + 1].ketamine_in_stock_ten_miligram_millileter)
+        
+        # Checking if versed in stock doesn't match
+        if (narcotics[i].versed_in_stock != narcotics[i + 1].versed_in_stock):
+
+            # Print alert
+            print("Sending versed in stock email.")
+
+            # Send email alert to admin
+            for user in users:
+                if user.groups.filter(name = "admin").exists():
+                    email_user(user.email, "chris.pondoc@gmail.com", "versed_in_stock in Stock Alert", "versed_in_stock in Stock", narcotics[i].versed_in_stock, narcotics[i + 1].versed_in_stock)        
+        
+        # Everything is good!
+        else:
+            print("Looking good!")
+
     # Creating dictionary of narcotics 
     context = {
         'title': "Narcotics",
