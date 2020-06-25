@@ -18,18 +18,15 @@
     <!-- FontAwesome -->
     <script src="https://kit.fontawesome.com/bec992c53a.js" crossorigin="anonymous"></script>
 
+    <!-- Title -->
+    <title>{% block title %}{% endblock title %} | EMS Supervisors</title>
+
     <style>
       label {
         font-weight: bold !important;
       }
     </style>
 
-    <!-- Title -->
-    {% if title %}
-        <title>{{ title }} | EMS Supervisors</title>
-    {% else %}
-        <title>EMS Supervisors</title>
-    {% endif %}
   </head>
   <body>
 

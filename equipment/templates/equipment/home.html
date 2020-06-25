@@ -1,5 +1,6 @@
 {% extends 'equipment/base.html' %}
 {% load auth_extras %}
+{% block title %}Home{% endblock title%}
 {% block content %}
     <div class="title-container">
         <h1><i class="fas fa-home mr-1"></i> Home Page</h1>
@@ -21,7 +22,7 @@
                     <div class="col-sm-9">
                       <h4 class="card-title">Vehicles</h4>
                       <p class="card-text">Manage all of the vehicle inventory.</p>
-                      <a href="{% url 'vehicles-home' %}" class="btn btn-primary">Go <i class="fas fa-arrow-right ml-1"></i></a>
+                      <a href="{% url 'vehicles-home' %}" style="background-color: #4398d9 !important; border-color: #4398d9 !important;" class="btn btn-primary">Go <i class="fas fa-arrow-right ml-1"></i></a>
                     </div>
                   </div>
                 </div>
@@ -41,7 +42,7 @@
                 <div class="col-sm-9">
                   <h4 class="card-title">Narcotics</h4>
                   <p class="card-text">Manage all of the narcotics inventory.</p>
-                  <a href="{% url 'narcotics-home' %}" class="btn btn-primary">Go <i class="fas fa-arrow-right ml-1"></i></a>
+                  <a href="{% url 'narcotics-home' %}" style="background-color: #4398d9 !important; border-color: #4398d9 !important;" class="btn btn-primary">Go <i class="fas fa-arrow-right ml-1"></i></a>
                 </div>
               </div>
             </div>
@@ -65,7 +66,7 @@
                   <div class="col-sm-9">
                     <h4 class="card-title">Equipment</h4>
                     <p class="card-text">Manage all of the equipment inventory.</p>
-                    <a href="{% url 'equipment-home' %}" class="btn btn-primary">Go <i class="fas fa-arrow-right ml-1"></i></a>
+                    <a href="{% url 'equipment-home' %}" style="background-color: #4398d9 !important; border-color: #4398d9 !important;" class="btn btn-primary">Go <i class="fas fa-arrow-right ml-1"></i></a>
                   </div>
                 </div>
               </div>
@@ -85,7 +86,7 @@
                   <div class="col-sm-9">
                     <h4 class="card-title">Drugs</h4>
                     <p class="card-text">Manage all of the drug inventory.</p>
-                    <a href="{% url 'drugs-home' %}" class="btn btn-primary">Go <i class="fas fa-arrow-right ml-1"></i></a>
+                    <a href="{% url 'drugs-home' %}" style="background-color: #4398d9 !important; border-color: #4398d9 !important;" class="btn btn-primary">Go <i class="fas fa-arrow-right ml-1"></i></a>
                   </div>
                 </div>
               </div>
