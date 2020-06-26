@@ -1,2 +1,2 @@
 # techfrederick hackathon
-code for techfrederick hackathon project. written in django. made by chris pondoc and nikolas struntz.
+code for 2020 techfrederick hackathon project. written in django. made by chris pondoc and nikolas struntz.
